@@ -2,14 +2,11 @@ import React, { useEffect } from "react";
 
 import AdminApp from "./AdminApp";
 import ViewButtons from "./components/ViewButtons";
+import { startMirage } from "./services/exampleServer";
 
 function App() {
-  const [account, setAccount] = React.useState("");
-  useEffect(() => {
-    fetch("/api/account")
-      .then((r) => r.json())
-      .then((account) => setAccount(account));
-  });
+  //startup the mirage server
+  startMirage();
   return (
     <div>
       <ViewButtons></ViewButtons>
