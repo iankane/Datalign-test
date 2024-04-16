@@ -1,26 +1,20 @@
 import React, { useState, useEffect } from "react";
 import NewAccount from "./components/NewAccount";
-import CustomerContainer from "./components/CustomerContainer";
+import CustomerAccordion from "./components/CustomerAccordion";
+import { startMirage } from "./services/exampleServer";
 
 function AdminApp() {
-  const [accountName, setAccountName] = useState("");
+  var customerList = [];
+  const [customerName, setCustomerName] = useState("");
 
   //get the data from the server
-  const [customer, setCustomer] = React.useState("");
   
-  useEffect(() => {
-    fetch("/api/customers")
-      .then((r) => r.json())
-      .then((customers) => {
-        customers.map((customer) =>{
-          setCustomer(customer)
-        })
-      });
-  });
   
   return <div>
-    <NewAccount />
-    <CustomerContainer/>
+    <NewAccount setter = {setCustomerName}></NewAccount>
+    <div className="accordion" id="customerContainer">
+      <CustomerAccordion key ={customerName.id} name={customerName}/>
+    </div>
     </div>;
 }
 

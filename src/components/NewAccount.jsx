@@ -1,8 +1,14 @@
 import { FormEvent, useState } from "react";
 
-const NewAccount = () => {
+
+
+const NewAccount = (props) => {
   const [account, setAccount] = useState("");
-  var handleSubmit = function (e) {};
+  var handleSubmit = function (e) {
+    console.log(account);
+    props.setter(account);
+    setAccount("");
+  };
 
   return (
     <form
