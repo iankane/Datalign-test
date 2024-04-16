@@ -8,7 +8,7 @@ const ViewButtons = () => {
   const onClickCustomer = () => {
     setSnowAdmin(false);
   };
-  setSnowAdmin(true);
+
   return (
     <div className="buttonContainer">
       <button
