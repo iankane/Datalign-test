@@ -1,34 +1,32 @@
 import { useEffect } from "react";
 
-  export async function getJSON(api, setter, logString){
-    
+export async function getJSON(api, setter, logString) {
   useEffect(() => {
     fetch(api)
       .then((r) => console.log(r.json()))
       .then((data) => {
-          setter(data);
-          console.log(logString + data);
+        setter(data);
+        console.log(logString + data);
       });
   });
-  }
+}
 
-  export async function postJSON(api, data){
-    try{
-      var result;
-      useEffect(() => {
-        fetch(api, {
-          method:'POST',
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data)
-        }).then((r)=> {
-          result = r.json();
-          console.log("success: ", result);
-        }
-      )
+export async function postJSON(api, data) {
+  try {
+    var result;
+    useEffect(() => {
+      fetch(api, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }).then((r) => {
+        result = r.json();
+        console.log("success: ", result);
       });
-    } catch(e){
-      console.error("Error: ", e);
-    }
+    });
+  } catch (e) {
+    console.error("Error: ", e);
   }
+}
