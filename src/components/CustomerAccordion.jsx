@@ -1,22 +1,22 @@
 import React from 'react'
+import NewAdvertisementButton from './NewAdvertisementButton';
 
 const CustomerAccordion = (props) => {
 let accountName = props.name;
-let key = props.key;
+let iterator = props.n;
 
   return (
     <div className="accordion-item">
-            <h2 className="accordion-header" id={key + "Header"}>
-              <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={"#accountCollapse" + key} aria-expanded="true" aria-controls={"accountCollapse"+key}>
+            <h2 className="accordion-header" id={"Header" + iterator}>
+              <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={"#accountCollapse" + iterator} aria-expanded="true" aria-controls={"accountCollapse"+iterator}>
                 {accountName}
               </button>
             </h2>
-            <div id={"accountCollapse" + key} className="accordion-collapse collapse" aria-labelledby={"heading"+ key} data-bs-parent="#accountList">
+            <div id={"accountCollapse" + iterator} className="accordion-collapse collapse show" aria-labelledby={"heading"+ iterator} data-bs-parent="#customerContainer">
               <div className="accordion-body" id={accountName+"-advertisements"}>
                 <div id="advertRegion">
-                    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#advertisementModal" id={accountName+"AddAdvertisement"} data>Add Advertisement</button>
+                    <NewAdvertisementButton accountName={accountName}></NewAdvertisementButton>
                     <div className="accordion accordion-flush" id={accountName + "AdvertisementAccordian"}>
-
                     </div>
                 </div>
               </div>

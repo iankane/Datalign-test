@@ -19,7 +19,6 @@ export function startMirage() {
 
     routes() {
       this.urlPrefix = 'http://localhost:3000'
-      this.namespace = 'http://localhost:3000'
 
       this.get("/api/customers", (schema, request) => {
         return schema.customers.all()
