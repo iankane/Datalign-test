@@ -13,33 +13,34 @@ function AdminApp() {
   };
 
   //get the data from the server
-  
-  
-  return <div>
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        handleSubmit(e);
-      }}
-    >
-      <label>
-        Account Name
-        <input
-          type="text"
-          value={account}
-          onChange={(e) => {
-            setAccount(e.target.value);
-          }}
-        />
-      </label>
-    </form>
-    <div className="accordion" id="customerContainer">
-      {customers.map( (customer, i) => (
-        <CustomerAccordion key ={i.toString()} name={customer} n = {i}/>
-      ))}
+
+  return (
+    <div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit(e);
+        }}
+      >
+        <label>
+          Account Name
+          <input
+            type="text"
+            value={account}
+            onChange={(e) => {
+              setAccount(e.target.value);
+            }}
+          />
+        </label>
+      </form>
+      <div className="accordion" id="customerContainer">
+        {customers.map((customer, i) => (
+          <CustomerAccordion key={i.toString()} name={customer} n={i} />
+        ))}
+      </div>
+      <AdvertisementModal />
     </div>
-    <AdvertisementModal/>
-    </div>;
+  );
 }
 
 export default AdminApp;
