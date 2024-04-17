@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import CustomerAccordion from "./components/CustomerAccordion";
 import AdvertisementModal from "./components/AdvertisementModal";
+import { Accordion } from "react-bootstrap";
 
 function AdminApp() {
   const [account, setAccount] = useState("");
+  const [currentAccount, setCurrentAccount] = useState("");
   var [customers, setCustomers] = useState([]);
+  var [ads, setAds] = useState([]);
   var handleSubmit = function (e) {
     console.log(account);
     setCustomers([...customers, account]);
@@ -32,12 +35,22 @@ function AdminApp() {
           />
         </label>
       </form>
-      <div className="accordion" id="customerContainer">
+      <Accordion>
         {customers.map((customer, i) => (
-          <CustomerAccordion key={i.toString()} name={customer} n={i} />
+          <CustomerAccordion
+            key={i.toString()}
+            name={customer}
+            n={i}
+            ads={ads}
+            currentSetter={setCurrentAccount}
+          />
         ))}
-      </div>
-      <AdvertisementModal />
+      </Accordion>
+      <AdvertisementModal
+        adSetter={setAds}
+        ads={ads}
+        currentAccount={currentAccount}
+      />
     </div>
   );
 }

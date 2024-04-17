@@ -15,6 +15,7 @@ const AdvertisementModal = (props) => {
   const handleSave = () => {
     setShow(false);
     var ad = {
+      account: props.currentAccount,
       name: adName,
       text: adText,
       textColor: adTextColor,
@@ -22,7 +23,7 @@ const AdvertisementModal = (props) => {
       backgroundColor: backgroundColor,
       active: toggle,
     };
-    postJSON("/api/adverts", JSON.stringify(ad));
+    props.adSetter([...props.ads, ad]);
   };
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -35,7 +36,9 @@ const AdvertisementModal = (props) => {
       </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Create Advertisement</Modal.Title>
+          <Modal.Title>
+            Create Advertisement For {props.currentAccount}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
