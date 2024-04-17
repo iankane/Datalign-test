@@ -19,6 +19,7 @@ export function startMirage() {
 
     routes() {
       this.urlPrefix = 'http://localhost:3000'
+      var newId = -1;
 
       this.get("/api/customers", (schema, request) => {
         return schema.customers.all()
