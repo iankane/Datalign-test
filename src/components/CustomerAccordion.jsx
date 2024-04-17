@@ -1,5 +1,4 @@
 import React from "react";
-import NewAdvertisementButton from "./NewAdvertisementButton";
 
 const CustomerAccordion = (props) => {
   let accountName = props.name;
@@ -27,9 +26,6 @@ const CustomerAccordion = (props) => {
       >
         <div className="accordion-body" id={accountName + "-advertisements"}>
           <div id="advertRegion">
-            <NewAdvertisementButton
-              accountName={accountName}
-            ></NewAdvertisementButton>
             <div
               className="accordion accordion-flush"
               id={accountName + "AdvertisementAccordian"}
