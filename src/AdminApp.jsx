@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import CustomerAccordion from "./components/CustomerAccordion";
-import { startMirage } from "./services/exampleServer";
 import AdvertisementModal from "./components/AdvertisementModal";
 
 function AdminApp() {

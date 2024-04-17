@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import AdvertisementDetails from "./AdvertisementDetails";
 
 const CustomerAccordion = (props) => {
-  let accountName = props.name;
+  const [accountName, setAccountName] = useState(props.name);
+  const [tempAccountName, setTempAccountName] = useState("");
   let iterator = props.n;
-
   return (
     <div className="accordion-item">
       <h2 className="accordion-header" id={"Header" + iterator}>
@@ -29,7 +30,32 @@ const CustomerAccordion = (props) => {
             <div
               className="accordion accordion-flush"
               id={accountName + "AdvertisementAccordian"}
-            ></div>
+            >
+              <AdvertisementDetails />
+              <div id="editAccountRegion">
+                <label htmlFor={accountName + "EditInput"}>
+                  Account Name:{" "}
+                </label>
+                <input
+                  type="text"
+                  id={tempAccountName + "EditInput"}
+                  value={tempAccountName}
+                  onChange={(e) => {
+                    setTempAccountName(e.target.value);
+                  }}
+                />
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  id={accountName + "EditButton"}
+                  onClick={(e) => {
+                    setAccountName(tempAccountName);
+                  }}
+                >
+                  Edit Account
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
