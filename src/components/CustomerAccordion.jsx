@@ -11,7 +11,9 @@ const CustomerAccordion = (props) => {
   const [accountName, setAccountName] = useState(props.name);
   const [tempAccountName, setTempAccountName] = useState("");
   let iterator = props.n;
-
+  if (props.name.type != "") {
+    return;
+  }
   return (
     <AccordionItem eventKey={iterator}>
       <AccordionHeader

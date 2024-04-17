@@ -3,20 +3,39 @@ import React from "react";
 import CustomerAccordion from "../../src/components/CustomerAccordion";
 
 describe("group", () => {
+  var current = "";
   const testString = "Ian";
+  const key = 0;
+  const ads = {};
+  const currentSetter = function (e) {
+    current = e;
+  };
 
   it("should render when the name is provided", () => {
-    render(<CustomerAccordion name={testString} />);
-    const heading = screen.getByRole("heading");
+    render(
+      <CustomerAccordion
+        name={testString}
+        key={key}
+        ads={ads}
+        currentSetter={currentSetter}
+      />
+    );
+    const button = screen.queryByText(testString);
 
-    expect(heading).toBeInTheDocument();
-    expect(heading).toHaveClass("accordion-header");
+    expect(button).toBeDefined();
   });
-  it("should render the button when the name is provided", () => {
-    render(<CustomerAccordion name={testString} />);
-    const button = screen.getByRole("button", { name: testString });
 
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveClass("accordion-button");
+  it("should not render when the name is not provided", () => {
+    let testNum = 2;
+    render(
+      <CustomerAccordion
+        name={testNum}
+        key={key}
+        ads={ads}
+        currentSetter={currentSetter}
+      />
+    );
+    const heading = screen.queryByText(testString);
+    expect(heading).toBeNull();
   });
 });

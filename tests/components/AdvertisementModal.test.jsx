@@ -1,4 +1,4 @@
-import { it, expect, describe } from "vitest";
+import AdvertisementModal from "../../src/components/AdvertisementModal";
 
 describe("group", () => {
   it("should", () => {

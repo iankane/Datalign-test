@@ -28,6 +28,9 @@ const AdvertisementDetails = (props) => {
         </AccordionBody>
       </AccordionItem>
     );
+  else {
+    return;
+  }
 };
 
 export default AdvertisementDetails;
