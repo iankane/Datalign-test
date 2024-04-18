@@ -10,7 +10,6 @@ function App() {
   startMirage();
   const space = "10px";
   const [showAdmin, setSnowAdmin] = useState(true);
-  const [ad, setAd] = useState([]);
   const onClickAdmin = () => {
     setSnowAdmin(true);
   };
@@ -38,7 +37,7 @@ function App() {
       </div>
       <Spacer size={space} />
       <AdminApp show={showAdmin} />
-      <CustomerApp show={!showAdmin} ad={ad} />
+      <CustomerApp show={!showAdmin} />
     </div>
   );
 }

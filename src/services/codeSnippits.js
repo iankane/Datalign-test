@@ -1,10 +1,8 @@
 const [customers, setCustomers] = React.useState("");
 useEffect(() => {
-  fetch("/api/customers/:id")
-    .then((r) => console.log(r.json()))
-    .then((customers) => {
-      setCustomers(customers);
-    });
+  fetch("/api/customers/:id").then((customers) => {
+    setCustomers(customers);
+  });
 });
 
 var handleClick = (e) => {

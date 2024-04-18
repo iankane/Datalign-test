@@ -26,7 +26,6 @@ const AdvertisementModal = (props) => {
       token: token,
       active: toggle,
     };
-    console.log("ad checked: " + ad.active);
     props.adSetter([...props.ads, ad]);
     postJSON("/api/adverts", ad);
     let customerID = {
@@ -121,7 +120,6 @@ const AdvertisementModal = (props) => {
                 checked={toggle}
                 onChange={(e) => {
                   setToggle(e.target.checked);
-                  console.log("Checked! " + e.target.checked);
                 }}
               ></Form.Check>
             </Form.Group>

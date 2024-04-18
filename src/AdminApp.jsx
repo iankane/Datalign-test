@@ -14,14 +14,12 @@ function AdminApp(props) {
   const space = "10px";
   var handleSubmit = function (e) {
     setCustomers([...customers, account]);
-    console.log(customers);
     postJSON("/api/customers", customers);
     setAccount("");
   };
   //gets the customers on startup and adds them to the customers
   React.useEffect(() => {
     getJSON("/api/customers", setServerCustomers);
-    console.log("Customers on server: " + serverCustomers);
     if (serverCustomers != undefined) {
       setCustomers(serverCustomers);
     }

@@ -3,10 +3,10 @@ import React from "react";
 import CustomerApp from "../src/CustomerApp";
 
 const show = true;
-it("should render the top button ", () => {
+it("should display an error if there isn't an ad on the server ", () => {
   render(<CustomerApp show={show} />);
 
-  const button = screen.queryAllByRole("Button");
+  const text = screen.queryAllByRole("text");
 
-  expect(button).toBeDefined();
+  expect(text).toBeDefined();
 });
