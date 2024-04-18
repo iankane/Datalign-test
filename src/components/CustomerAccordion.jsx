@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AdvertisementDetails from "./AdvertisementDetails";
+import Spacer from "./Spacer";
 import {
   Accordion,
   AccordionBody,
@@ -9,6 +10,7 @@ import {
 import { postJSON } from "../services/JSONResponseHandler";
 
 const CustomerAccordion = (props) => {
+  const space = "10px";
   const [accountName, setAccountName] = useState(props.name);
   const [tempAccountName, setTempAccountName] = useState("");
   let iterator = props.n;
@@ -37,6 +39,7 @@ const CustomerAccordion = (props) => {
             />
           ))}
         </Accordion>
+        <Spacer size={space} />
         <div id="editAccountRegion">
           <label htmlFor={accountName + "EditInput"}>Account Name: </label>
           <input

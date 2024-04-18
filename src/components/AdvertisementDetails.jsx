@@ -6,11 +6,11 @@ const AdvertisementDetails = (props) => {
   const iterator = props.n;
   const adName = props.ad.name;
   const adText = props.ad.text;
-  const textColor = props.ad.adTextColor;
-  const size = props.ad.textSize;
+  const textColor = props.ad.textColor;
+  const size = props.ad.size;
   const bgColor = props.ad.backgroundColor;
   const token = props.ad.token;
-  const active = props.ad.toggle;
+  const active = props.ad.active;
   if (accountName == props.customer)
     return (
       <AccordionItem eventKey={iterator}>
@@ -19,7 +19,7 @@ const AdvertisementDetails = (props) => {
           <p
             style={{
               color: textColor,
-              size: size,
+              fontSize: size,
               background: bgColor,
             }}
           >

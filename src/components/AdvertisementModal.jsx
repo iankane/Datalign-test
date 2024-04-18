@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import { getJSON, postJSON } from "../services/JSONResponseHandler";
+import { postJSON } from "../services/JSONResponseHandler";
 import { generateToken } from "../services/TokenGeneration";
 
 const AdvertisementModal = (props) => {
@@ -26,6 +26,7 @@ const AdvertisementModal = (props) => {
       token: token,
       active: toggle,
     };
+    console.log("ad checked: " + ad.active);
     props.adSetter([...props.ads, ad]);
     postJSON("/api/adverts", ad);
     let customerID = {
@@ -36,7 +37,9 @@ const AdvertisementModal = (props) => {
   };
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const textSizeOptions = [8, 10, 12, 14, 16];
+  //Apparently text size is capped in react, gotta work around that.
+
+  const textSizeOptions = [8, 10, 12, 14, 16, 18, 20, 22, 24];
 
   //todo: Conditional rendering on the button
   return (
@@ -117,7 +120,8 @@ const AdvertisementModal = (props) => {
                 label="activate ad"
                 checked={toggle}
                 onChange={(e) => {
-                  setToggle(e.currentTarget.checked);
+                  setToggle(e.target.checked);
+                  console.log("Checked! " + e.target.checked);
                 }}
               ></Form.Check>
             </Form.Group>

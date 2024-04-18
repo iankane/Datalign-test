@@ -13,18 +13,26 @@ const CustomerApp = (props) => {
     backgroundColor: "#000000",
     active: true,
   };
+  var report = "All's fine";
   const [token, setToken] = useState("");
   const [ad, setAd] = useState(dummyAd);
 
   let params = new URL(document.location.toString()).searchParams;
   React.useEffect(() => {
-    setToken(params.get("ad"));
-    getJSON("/api/adverts/bytoken/:" + token, setAd);
+    if (params.size > 0) {
+      setToken(params.get("ad"));
+      getJSON("/api/adverts/bytoken/:" + token, setAd);
+    } else {
+      report = "No URL Param!";
+    }
   });
   if (!props.show) {
     return <div />;
+  } else if (!ad) {
+    <p>{report}</p>;
+  } else {
+    return <AdvertisementDetails ad={ad} n={1} />;
   }
-  return <AdvertisementDetails ad={ad} n={1} />;
 };
 
 export default CustomerApp;

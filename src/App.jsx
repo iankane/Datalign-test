@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
 import AdminApp from "./AdminApp";
-import ViewButtons from "./components/ViewButtons";
 import { startMirage } from "./services/exampleServer";
-import { getJSON, postJSON } from "./services/JSONResponseHandler";
 import CustomerApp from "./CustomerApp";
+import Spacer from "./components/Spacer";
 
 function App() {
   //startup the mirage server
   startMirage();
+  const space = "10px";
   const [showAdmin, setSnowAdmin] = useState(true);
   const [ad, setAd] = useState([]);
   const onClickAdmin = () => {
@@ -36,6 +36,7 @@ function App() {
           Customer View
         </button>
       </div>
+      <Spacer size={space} />
       <AdminApp show={showAdmin} />
       <CustomerApp show={!showAdmin} ad={ad} />
     </div>

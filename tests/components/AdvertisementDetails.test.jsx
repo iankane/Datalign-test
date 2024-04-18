@@ -12,6 +12,7 @@ describe("group", () => {
     textColor: "#FFFFFF",
     size: 12,
     backgroundColor: "#000000",
+    token: "ASDFGHJKLP",
     active: true,
   };
 

@@ -6,7 +6,17 @@ describe("group", () => {
   var current = "";
   const testString = "Ian";
   const key = 0;
-  const ads = {};
+  const ad = {
+    account: "Ian",
+    name: "Test Ad",
+    text: "Testing the ads",
+    textColor: "#FFFFFF",
+    size: 12,
+    backgroundColor: "#000000",
+    token: "ASDFGHJKLP",
+    active: true,
+  };
+  const ads = [ad];
   const currentSetter = function (e) {
     current = e;
   };

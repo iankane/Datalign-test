@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CustomerAccordion from "./components/CustomerAccordion";
 import AdvertisementModal from "./components/AdvertisementModal";
 import { Accordion } from "react-bootstrap";
 import { getJSON, postJSON } from "./services/JSONResponseHandler";
+import Spacer from "./components/Spacer";
 
 function AdminApp(props) {
   const [account, setAccount] = useState("");
@@ -10,6 +11,7 @@ function AdminApp(props) {
   var [customers, setCustomers] = useState([]);
   var [serverCustomers, setServerCustomers] = useState([]);
   var [ads, setAds] = useState([]);
+  const space = "10px";
   var handleSubmit = function (e) {
     setCustomers([...customers, account]);
     console.log(customers);
@@ -46,6 +48,7 @@ function AdminApp(props) {
           />
         </label>
       </form>
+      <Spacer size={space} />
       <Accordion>
         {customers.map((customer, i) => (
           <CustomerAccordion
@@ -58,6 +61,7 @@ function AdminApp(props) {
           />
         ))}
       </Accordion>
+      <Spacer size={space} />
       <AdvertisementModal
         adSetter={setAds}
         ads={ads}
