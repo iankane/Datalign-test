@@ -2,7 +2,9 @@ export async function getJSON(api, setter, logString) {
   fetch(api)
     .then((r) => console.log(r.json()))
     .then((data) => {
-      setter(data);
+      if (data) {
+        setter(data);
+      }
       console.log(logString + data);
     });
 }

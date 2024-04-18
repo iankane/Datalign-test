@@ -9,4 +9,13 @@ describe("group", () => {
 
     expect(label).toBeInTheDocument();
   });
+
+  it("should render both buttons ", () => {
+    render(<App />);
+
+    const button = screen.queryAllByRole("button");
+
+    expect(button).toBeDefined();
+    expect(button).toHaveLength(2);
+  });
 });

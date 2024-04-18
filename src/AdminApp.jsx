@@ -4,7 +4,7 @@ import AdvertisementModal from "./components/AdvertisementModal";
 import { Accordion } from "react-bootstrap";
 import { getJSON, postJSON } from "./services/JSONResponseHandler";
 
-function AdminApp() {
+function AdminApp(props) {
   const [account, setAccount] = useState("");
   const [currentAccount, setCurrentAccount] = useState("");
   var [customers, setCustomers] = useState([]);
@@ -23,8 +23,10 @@ function AdminApp() {
     if (serverCustomers != undefined) {
       setCustomers(serverCustomers);
     }
-  });
-
+  }, []);
+  if (!props.show) {
+    return <div></div>;
+  }
   return (
     <div>
       <form

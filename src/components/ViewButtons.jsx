@@ -1,5 +1,7 @@
 import React from "react";
 
+//I just put all this code in app.jsx for ease of throwing around params.
+
 const ViewButtons = () => {
   const [ShowAdmin, setSnowAdmin] = React.useState(false);
   const onClickAdmin = () => {
