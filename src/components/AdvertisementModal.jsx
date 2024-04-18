@@ -28,6 +28,11 @@ const AdvertisementModal = (props) => {
     };
     props.adSetter([...props.ads, ad]);
     postJSON("/api/adverts", ad);
+    let customerID = {
+      id: props.currentAccount,
+      ad: { ad },
+    };
+    postJSON("/api/customers/:id/adverts", customerID);
   };
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

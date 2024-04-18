@@ -6,11 +6,17 @@ import {
   AccordionHeader,
   AccordionItem,
 } from "react-bootstrap";
+import { postJSON } from "../services/JSONResponseHandler";
 
 const CustomerAccordion = (props) => {
   const [accountName, setAccountName] = useState(props.name);
   const [tempAccountName, setTempAccountName] = useState("");
   let iterator = props.n;
+  const updateAccounts = () => {
+    //There should be an edit customers at ID but that's not in the mirage file?
+    postJSON("/api/customers", props.customers);
+  };
+
   return (
     <AccordionItem eventKey={iterator}>
       <AccordionHeader
@@ -47,6 +53,7 @@ const CustomerAccordion = (props) => {
             id={accountName + "EditButton"}
             onClick={(e) => {
               setAccountName(tempAccountName);
+              updateAccounts();
             }}
           >
             Edit Account

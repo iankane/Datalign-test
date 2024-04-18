@@ -7,6 +7,35 @@ useEffect(() => {
     });
 });
 
+var handleClick = (e) => {
+  getJSON("/api/adverts/bytoken/:token", setToken, "Token is set!");
+};
+const url = new URL("http://localhost:3000/show");
+const adId = new URLSearchParams(url.search);
+if (adId != null) {
+  //tmp = getJSON("/api/adverts/bytoken/:token", setToken, "URL Token obtained :")
+}
+
+getJSON("/api/customers/", setCustomers, "Got Customers: ");
+
+const [customerid, setcustomerid] = React.useState("");
+getJSON("/api/customers/:id", setcustomerid, "Got CustomersID: ");
+
+const [adverts, setAdverts] = React.useState([]);
+const [advertids, setAdvertids] = React.useState([]);
+getJSON("/api/customers/:id/advertids", setAdvertids, "Got advertids: ");
+
+const [advertid, setAdvertid] = React.useState(Number);
+getJSON("/api/adverts/:id", setAdvertid, "Got advertid: ");
+
+const [token, setToken] = React.useState([]);
+getJSON("/api/adverts/bytoken/:token", setToken, "Got token: ");
+
+postJSON("/api/adverts", adverts);
+postJSON("/api/customers", customers);
+postJSON("/api/customers/:id/adverts", advertids);
+postJSON("/api/customers/:id/advertids/:advertid", advertids);
+
 <div
   className="modal fade"
   id="advertisementModal"

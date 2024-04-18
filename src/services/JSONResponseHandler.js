@@ -1,14 +1,10 @@
-import { useEffect } from "react";
-
 export async function getJSON(api, setter, logString) {
-  useEffect(() => {
-    fetch(api)
-      .then((r) => console.log(r.json()))
-      .then((data) => {
-        setter(data);
-        console.log(logString + data);
-      });
-  });
+  fetch(api)
+    .then((r) => console.log(r.json()))
+    .then((data) => {
+      setter(data);
+      console.log(logString + data);
+    });
 }
 
 export async function postJSON(api, data) {
