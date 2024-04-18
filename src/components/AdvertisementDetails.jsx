@@ -9,6 +9,7 @@ const AdvertisementDetails = (props) => {
   const textColor = props.ad.adTextColor;
   const size = props.ad.textSize;
   const bgColor = props.ad.backgroundColor;
+  const token = props.ad.token;
   const active = props.ad.toggle;
   if (accountName == props.customer)
     return (
@@ -24,6 +25,7 @@ const AdvertisementDetails = (props) => {
           >
             {adText}
           </p>
+          <p>{"Token is: " + token}</p>
           <p>{"Toggle is: " + active}</p>
         </AccordionBody>
       </AccordionItem>

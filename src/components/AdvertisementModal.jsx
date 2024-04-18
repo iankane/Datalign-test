@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { getJSON, postJSON } from "../services/JSONResponseHandler";
+import { generateToken } from "../services/TokenGeneration";
 
 const AdvertisementModal = (props) => {
-  const [adName, setAdName] = useState("");
-  const [adText, setAdText] = useState("");
+  const [adName, setAdName] = useState("Ad Name");
+  const [adText, setAdText] = useState("Ad Text Goes Here");
   const [adTextColor, setAdTextColor] = useState("");
   const [textSize, setTextSize] = useState(12);
   const [backgroundColor, setBackgroundColor] = useState("#563d7c");
@@ -14,6 +15,7 @@ const AdvertisementModal = (props) => {
 
   const handleSave = () => {
     setShow(false);
+    const token = generateToken(10);
     var ad = {
       account: props.currentAccount,
       name: adName,
@@ -21,14 +23,17 @@ const AdvertisementModal = (props) => {
       textColor: adTextColor,
       size: textSize,
       backgroundColor: backgroundColor,
+      token: token,
       active: toggle,
     };
     props.adSetter([...props.ads, ad]);
+    postJSON("/api/adverts", ad);
   };
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const textSizeOptions = [8, 10, 12, 14, 16];
 
+  //todo: Conditional rendering on the button
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
@@ -93,22 +98,21 @@ const AdvertisementModal = (props) => {
               <Form.Select
                 value={textSize}
                 onChange={(e) => {
-                  setBackgroundColor(e.target.value);
+                  setTextSize(e.target.value);
                 }}
               >
-                <option>Default Select</option>
-                {textSizeOptions.map((size, i) => {
-                  <option key={i}>{size}</option>;
-                })}
+                {textSizeOptions.map((size, i) => (
+                  <option key={i.toString()}>{size}</option>
+                ))}
               </Form.Select>
             </Form.Group>
             <Form.Group>
               <Form.Check
                 type="switch"
                 label="activate ad"
-                value={toggle}
+                checked={toggle}
                 onChange={(e) => {
-                  setToggle(e.target.value);
+                  setToggle(e.currentTarget.checked);
                 }}
               ></Form.Check>
             </Form.Group>

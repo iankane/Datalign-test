@@ -9,8 +9,8 @@ function AdminApp() {
   var [customers, setCustomers] = useState([]);
   var [ads, setAds] = useState([]);
   var handleSubmit = function (e) {
-    console.log(account);
     setCustomers([...customers, account]);
+    console.log(customers);
     setAccount("");
   };
 

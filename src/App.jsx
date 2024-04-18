@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import AdminApp from "./AdminApp";
 import ViewButtons from "./components/ViewButtons";
