@@ -6,13 +6,16 @@ import {
   AccordionBody,
   AccordionHeader,
   AccordionItem,
+  Button,
 } from "react-bootstrap";
 import { postJSON } from "../services/JSONResponseHandler";
+import "../css/CustomerAccordion.css";
 
 const CustomerAccordion = (props) => {
   const space = "10px";
   const [accountName, setAccountName] = useState(props.name);
-  const [tempAccountName, setTempAccountName] = useState("");
+  const [tempAccountName, setTempAccountName] = useState(accountName);
+  const handleShow = () => props.setShowModal(true);
   let iterator = props.n;
   const updateAccounts = () => {
     //There should be an edit customers at ID but that's not in the mirage file?
@@ -40,8 +43,8 @@ const CustomerAccordion = (props) => {
           ))}
         </Accordion>
         <Spacer size={space} />
-        <div id="editAccountRegion">
-          <label htmlFor={accountName + "EditInput"}>Account Name: </label>
+        <div id="editAccountRegion" className="border border-secondary">
+          <label htmlFor={accountName + "EditInput"}>Edit Account: </label>
           <input
             type="text"
             id={tempAccountName + "EditInput"}
@@ -50,17 +53,21 @@ const CustomerAccordion = (props) => {
               setTempAccountName(e.target.value);
             }}
           />
-          <button
-            type="button"
-            className="btn btn-primary"
+
+          <Button
             id={accountName + "EditButton"}
+            className="buttonPadding"
             onClick={(e) => {
               setAccountName(tempAccountName);
               updateAccounts();
             }}
           >
             Edit Account
-          </button>
+          </Button>
+          <Spacer size={space} />
+          <Button variant="primary" onClick={handleShow}>
+            Create new Ad
+          </Button>
         </div>
       </AccordionBody>
     </AccordionItem>

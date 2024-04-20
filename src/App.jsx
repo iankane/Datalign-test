@@ -19,22 +19,6 @@ function App() {
 
   return (
     <div>
-      <div className="buttonContainer">
-        <button
-          type="button"
-          className={"btn btn-light " + (showAdmin ? "active" : "")}
-          onClick={onClickAdmin}
-        >
-          Administrator View
-        </button>
-        <button
-          type="button"
-          className={"btn btn-light " + (showAdmin ? "" : "active")}
-          onClick={onClickCustomer}
-        >
-          Customer View
-        </button>
-      </div>
       <Spacer size={space} />
       <AdminApp show={showAdmin} />
       <CustomerApp show={!showAdmin} />

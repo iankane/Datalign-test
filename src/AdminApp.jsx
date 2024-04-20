@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import CustomerAccordion from "./components/CustomerAccordion";
 import AdvertisementModal from "./components/AdvertisementModal";
-import { Accordion } from "react-bootstrap";
+import { Accordion, Button } from "react-bootstrap";
 import { getJSON, postJSON } from "./services/JSONResponseHandler";
 import Spacer from "./components/Spacer";
+import "./css/AdminApp.css";
 
 function AdminApp(props) {
   const [account, setAccount] = useState("");
@@ -11,6 +12,7 @@ function AdminApp(props) {
   var [customers, setCustomers] = useState([]);
   var [serverCustomers, setServerCustomers] = useState([]);
   var [ads, setAds] = useState([]);
+  var [showModal, setShowModal] = useState(false);
   const space = "10px";
   var handleSubmit = function (e) {
     setCustomers([...customers, account]);
@@ -45,6 +47,15 @@ function AdminApp(props) {
             }}
           />
         </label>
+        <Button
+          className="buttonPadding"
+          onClick={(e) => {
+            e.preventDefault();
+            handleSubmit();
+          }}
+        >
+          Add Account
+        </Button>
       </form>
       <Spacer size={space} />
       <Accordion>
@@ -56,6 +67,7 @@ function AdminApp(props) {
             ads={ads}
             currentSetter={setCurrentAccount}
             customers={customers}
+            setShowModal={setShowModal}
           />
         ))}
       </Accordion>
@@ -64,6 +76,8 @@ function AdminApp(props) {
         adSetter={setAds}
         ads={ads}
         currentAccount={currentAccount}
+        showModal={showModal}
+        setShowModal={setShowModal}
       />
     </div>
   );

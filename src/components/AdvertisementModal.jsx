@@ -10,11 +10,11 @@ const AdvertisementModal = (props) => {
   const [textSize, setTextSize] = useState(12);
   const [backgroundColor, setBackgroundColor] = useState("#563d7c");
   const [toggle, setToggle] = useState(false);
-
-  const [show, setShow] = useState(false);
+  var show = props.showModal;
+  var showCallback = props.setShowModal;
 
   const handleSave = () => {
-    setShow(false);
+    showCallback(false);
     const token = generateToken(10);
     var ad = {
       account: props.currentAccount,
@@ -34,8 +34,7 @@ const AdvertisementModal = (props) => {
     };
     postJSON("/api/customers/:id/adverts", customerID);
   };
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => showCallback(false);
   //Apparently text size is capped in react, gotta work around that.
 
   const textSizeOptions = [8, 10, 12, 14, 16, 18, 20, 22, 24];
@@ -43,9 +42,6 @@ const AdvertisementModal = (props) => {
   //todo: Conditional rendering on the button
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Create new Ad for current customer
-      </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
