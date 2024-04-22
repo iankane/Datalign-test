@@ -5,12 +5,23 @@ import { Accordion, Button } from "react-bootstrap";
 import { getJSON, postJSON } from "./services/JSONResponseHandler";
 import Spacer from "./components/Spacer";
 import "./css/AdminApp.css";
+import { useLoaderData } from "react-router-dom";
+import { startMirage } from "./services/exampleServer";
 
-function AdminApp(props) {
+export const adminLoader = async () => {
+  startMirage();
+  const url = "http://localhost:3000";
+  const res = await fetch(url + "/api/customers");
+  console.log("Admin Loader Hit");
+  return res.json();
+};
+
+function AdminApp() {
+  const serverCustomers = useLoaderData();
   const [account, setAccount] = useState("");
   const [currentAccount, setCurrentAccount] = useState("");
-  var [customers, setCustomers] = useState([]);
-  var [serverCustomers, setServerCustomers] = useState([]);
+  var [customers, setCustomers] = useState(serverCustomers.customers);
+
   var [ads, setAds] = useState([]);
   var [showModal, setShowModal] = useState(false);
   const space = "10px";
@@ -19,16 +30,6 @@ function AdminApp(props) {
     postJSON("/api/customers", customers);
     setAccount("");
   };
-  //gets the customers on startup and adds them to the customers
-  React.useEffect(() => {
-    getJSON("/api/customers", setServerCustomers);
-    if (serverCustomers != undefined) {
-      setCustomers(serverCustomers);
-    }
-  }, []);
-  if (!props.show) {
-    return <div></div>;
-  }
   return (
     <div>
       <form
