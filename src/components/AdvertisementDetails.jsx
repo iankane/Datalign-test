@@ -1,7 +1,9 @@
 import React from "react";
-import { AccordionBody, AccordionHeader, AccordionItem } from "react-bootstrap";
+import { Accordion } from "react-bootstrap";
+import { useSearchParams } from "react-router-dom";
 
 const AdvertisementDetails = (props) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const accountName = props.ad.account;
   const iterator = props.n;
   const adName = props.ad.name;
@@ -11,11 +13,15 @@ const AdvertisementDetails = (props) => {
   const bgColor = props.ad.backgroundColor;
   const token = props.ad.token;
   const active = props.ad.active;
+  const clickHandler = (e) => {
+    console.log("Token :" + token);
+    setSearchParams({ token: token });
+  };
   if (accountName == props.customer)
     return (
-      <AccordionItem eventKey={iterator}>
-        <AccordionHeader>{adName}</AccordionHeader>
-        <AccordionBody>
+      <Accordion.Item eventKey={iterator} onClick={clickHandler}>
+        <Accordion.Header>{adName}</Accordion.Header>
+        <Accordion.Body>
           <p
             style={{
               color: textColor,
@@ -27,8 +33,8 @@ const AdvertisementDetails = (props) => {
           </p>
           <p>{"Token is: " + token}</p>
           <p>{"Toggle is: " + active}</p>
-        </AccordionBody>
-      </AccordionItem>
+        </Accordion.Body>
+      </Accordion.Item>
     );
   else {
     return;

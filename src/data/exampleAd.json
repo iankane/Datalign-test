@@ -1,0 +1,13 @@
+
+{
+    "ad":{
+        "account": "Ian",
+        "name": "Test Ad",
+        "text": "Testing the ads",
+        "textColor": "#FFFFFF",
+        "size": 12,
+        "backgroundColor": "#000000",
+        "token": "DatalignTest",
+        "active": true
+    }
+  }

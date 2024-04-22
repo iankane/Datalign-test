@@ -1,30 +1,49 @@
 import React, { useState } from "react";
 import { getJSON } from "./services/JSONResponseHandler";
 import AdvertisementDetails from "./components/AdvertisementDetails";
+import { startMirage } from "./services/exampleServer";
+import { useLoaderData, useSearchParams } from "react-router-dom";
 import { Accordion } from "react-bootstrap";
 
-const CustomerApp = (props) => {
-  const report = "There was a 500 error on the Server.";
-  const [token, setToken] = useState("");
-  const [ad, setAd] = useState({});
+export const customerLoader = async () => {
+  console.log("Customer Loader Hit");
+  return startMirage();
+};
 
-  let params = new URL(document.location.toString()).searchParams;
+const CustomerApp = () => {
+  const report = "There was a 500 error on the Server.";
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [token, setToken] = useState(searchParams.get("token") || "");
+  const [ad, setAd] = useState({});
+  const [exampleAd, setExampleAd] = useState({
+    account: "Ian",
+    name: "Test Ad",
+    text: "Testing the ads",
+    textColor: "#FFFFFF",
+    size: 12,
+    backgroundColor: "#000000",
+    token: "DatalignTest",
+    active: true,
+  });
   React.useEffect(() => {
-    if (params.size > 0) {
-      setToken(params.get("ad"));
-      getJSON("/api/adverts/bytoken/:" + token, setAd);
+    if (searchParams.size > 0) {
+      setToken(searchParams.get("token"));
+      getJSON("/api/adverts/bytoken/" + token, setAd);
     }
   });
-  if (!props.show) {
-    return <div />;
-  } else if (ad.account == undefined) {
+  if (ad.account == undefined && exampleAd.token != token) {
     return <p>{report}</p>;
-  } else {
+  } else if (exampleAd.token == token) {
+    console.log("Hit the example Ad");
     return (
-      <Accordion>
-        <AdvertisementDetails ad={ad} n={1} />
-      </Accordion>
+      <>
+        <Accordion>
+          <AdvertisementDetails ad={exampleAd} n={0} customer="Ian" />
+        </Accordion>
+      </>
     );
+  } else {
+    return <AdvertisementDetails ad={ad} n={0} customer={ad.account} />;
   }
 };
 
